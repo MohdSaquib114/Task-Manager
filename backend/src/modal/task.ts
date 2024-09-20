@@ -1,4 +1,4 @@
-import { Schema, model, Document } from 'mongoose';
+import { Schema, model, Document , Types} from 'mongoose';
 
 
 interface ITask extends Document {
@@ -7,6 +7,7 @@ interface ITask extends Document {
   status: 'To Do' | 'In Progress' | 'Completed';
   priority: 'Low' | 'Medium' | 'High';
   dueDate?: Date;
+  user: Types.ObjectId; 
 }
 
 
@@ -24,6 +25,7 @@ const taskSchema = new Schema<ITask>({
     required: true,
   },
   dueDate: { type: Date },
+  user: { type: Schema.Types.ObjectId, ref: 'User', required: true } 
 });
 
 

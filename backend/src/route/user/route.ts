@@ -34,8 +34,17 @@ route.post("/sign-up", validate(signupSchema) ,async (req: Request, res: Respons
   
      
       await newUser.save();
+      const token = jwt.sign({ id: newUser._id, username,name: newUser.name }, JWT_SECRET, { expiresIn: '1h' });
+      res.cookie('token', token, {
+        httpOnly: true,
+        sameSite:'lax',
+        maxAge: 3600000, 
+        secure:false,
+        path: '/',
+      });
   
-      return res.status(201).json({ message: 'User created successfully' });
+  
+      return res.status(201).json({ success: true, message: 'User created successfully' });
     } catch (error) {
       console.error('Error in sign-up:', error);
       return res.status(500).json({ message: 'Server error' });
@@ -58,16 +67,20 @@ route.post("/sign-in", validate(signInSchema), async (req: Request, res: Respons
       }
   
       
-      const token = jwt.sign({ id: user._id, username }, JWT_SECRET, { expiresIn: '1h' });
+      const token = jwt.sign({ id: user._id, username,name: user.name }, JWT_SECRET, { expiresIn: '1h' });
   
-    
+   
       res.cookie('token', token, {
         httpOnly: true,
-       
+        sameSite:'lax',
         maxAge: 3600000, 
+        secure:false,
+        path: '/',
       });
+     
   
       return res.json({ success: true, message: 'Sign in successful' });
+
     } catch (error) {
       console.error('Error in sign-in:', error);
       return res.status(500).json({ message: 'Server error' });
@@ -77,6 +90,7 @@ route.post("/sign-in", validate(signInSchema), async (req: Request, res: Respons
 
 route.post("/logout", (req: Request, res: Response) => {
     res.clearCookie('token'); 
+
     return res.json({ success: true, message: 'Logged out successfully' });
   });
   

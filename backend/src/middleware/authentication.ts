@@ -5,8 +5,20 @@ require("dotenv").config()
 
 const JWT_SECRET = process.env.JWT_SECRET as string
 
+type User = {
+    id: string;
+    username: string;
+    name: string;
+
+  };
+declare module 'express-serve-static-core' {
+    interface Request {
+      user?: User;
+    }
+  }
+
 export const authenticate = (req: Request, res: Response, next: NextFunction) => {
-  const token = req.cookies.token; // Assuming you're using cookie-parser
+    const token = req.cookies.token;
 
   if (!token) {
     return res.status(401).json({ message: 'Unauthorized: No token provided' });
@@ -17,8 +29,13 @@ export const authenticate = (req: Request, res: Response, next: NextFunction) =>
       return res.status(403).json({ message: 'Unauthorized: Invalid token' });
     }
     
-    //  @ts-ignore
-    req.user = decoded; 
+
+    req.user = {
+        id: decoded.id,
+        username: decoded.username,
+        name: decoded.name
+    
+    }; 
     next();
   });
 };
