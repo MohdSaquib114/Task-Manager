@@ -4,6 +4,17 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { CalendarIcon, ChevronDownIcon, ChevronUpIcon } from 'lucide-react'
 import { format } from 'date-fns'
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+  } from "@/components/ui/alert-dialog"
 
 interface TaskProps {
   _id: string
@@ -92,13 +103,40 @@ export default function TaskCard({ _id, title, description, status, priority, du
         </div>
       </CardContent>
       <CardFooter>
-        <Button 
+        {/* <Button 
           variant="destructive" 
           className="w-full bg-red-700 hover:bg-red-600 text-white"
-          onClick={() => onDelete(_id)}
+          }
         >
           Delete
-        </Button>
+        </Button> */}
+                    <AlertDialog  >
+            <AlertDialogTrigger>
+                <Button 
+                 variant="destructive" 
+                 className="w-full bg-red-700 hover:bg-red-600 text-white">
+                    Delete
+                </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent className='bg-gray-800'>
+                <AlertDialogHeader className='text-white'>
+                <AlertDialogTitle  >Are you absolutely sure?</AlertDialogTitle>
+                <AlertDialogDescription>
+                    This action cannot be undone. This will permanently delete your task
+                     servers.
+                </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                <AlertDialogCancel className='bg-white'>
+                   
+                        Cancel
+                  
+                </AlertDialogCancel>
+                <AlertDialogAction onClick={() => onDelete(_id)} className='bg-red-600 text-white' >Continue</AlertDialogAction>
+                </AlertDialogFooter>
+            </AlertDialogContent>
+            </AlertDialog>
+
       </CardFooter>
     </Card>
   )

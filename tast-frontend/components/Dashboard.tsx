@@ -8,6 +8,7 @@ import { useTaskContext } from './TaskProvider'
 import Link from 'next/link'
 import Navbar from './Navbar'
 
+  
 export interface Task {
   _id: string
   title: string
@@ -22,7 +23,7 @@ export interface Task {
 export default function Dashboard() {
 
   const [filters, setFilters] = useState({ status: 'all', priority: 'all' })
-  const { tasks, loading, error,  deleteTask,  } = useTaskContext();
+  const { tasks,   deleteTask,  } = useTaskContext();
 
   const router = useRouter();
 useEffect(() => {

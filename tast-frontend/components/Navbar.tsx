@@ -20,7 +20,7 @@ export default function Navbar() {
     try {
         const {data} = await axios.get('http://localhost:9000/api/cookie/check-auth',{withCredentials:true});
         if(data.cookie){
-            console.log(data.user)
+            
             setUser(data.user)
            
         }
