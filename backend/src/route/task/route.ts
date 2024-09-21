@@ -23,7 +23,7 @@ route.post('/', authenticate, validate(taskSchema), async (req:Request, res:Resp
     }
   });
 
-  route.get('/', authenticate, async (req, res) => {
+  route.get('/',  async (req, res) => {
     try {
       const userId = req.user?.id
       const tasks = await Task.find({ user: userId });

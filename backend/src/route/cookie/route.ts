@@ -11,14 +11,14 @@ const route = Router()
 
   route.get("/check-auth",async (req:Request,res:Response)=> {
     const token = req.cookies.token;
-  
+
     if (!token) {
       return res.status(200).json({ cookie:false});
     }
   
     try {
       const decoded = jwt.verify(token, JWT_SECRET);
-   
+ 
       return res.status(200).json({cookie:true ,user: decoded });
     } catch (err) {
       return res.status(403).json({ cookie:false });
