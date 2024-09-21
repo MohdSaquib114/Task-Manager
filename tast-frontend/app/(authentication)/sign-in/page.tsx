@@ -9,7 +9,7 @@ import Link from 'next/link'
 import axios from "axios"
 import { useRouter } from 'next/navigation'
 
-const api_uri = "https://task-manager-t77j.onrender.com"
+
 
 export default function SignInForm() {
   const [username, setUsername] = useState('')
@@ -29,7 +29,7 @@ export default function SignInForm() {
       return
     }
 
-    const {data} = await axios.post(`${api_uri}/api/user/sign-in`,{username,password}, {
+    const {data} = await axios.post(`https://task-manager-t77j.onrender.com/api/user/sign-in`,{username,password}, {
       withCredentials:true
     })
     console.log(data)

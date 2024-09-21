@@ -34,7 +34,7 @@ interface TaskContextType {
 
 const TaskContext = createContext<TaskContextType | undefined>(undefined);
 
-const api_uri = "https://task-manager-t77j.onrender.com"
+
 
 export const TaskProvider= ({ children }:{children:React.ReactNode}) => {
 
@@ -48,7 +48,7 @@ export const TaskProvider= ({ children }:{children:React.ReactNode}) => {
     const fetchTasks = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`${api_uri}/api/task`,{withCredentials:true});
+        const response = await axios.get(`https://task-manager-t77j.onrender.com/api/task`,{withCredentials:true});
         setTasks(response.data);
       } catch (err) {
         setError('Failed to fetch tasks');
@@ -63,7 +63,7 @@ export const TaskProvider= ({ children }:{children:React.ReactNode}) => {
  
   const addTask = async (newTask: AddTask) => {
     try {
-      const response = await axios.post(`${api_uri}/api/task`, newTask,{withCredentials:true});
+      const response = await axios.post(`https://task-manager-t77j.onrender.com/api/task`, newTask,{withCredentials:true});
       setTasks(prevTasks => [...prevTasks, { ...response.data, _id: response.data._id }]);
     } catch (err) {
       setError('Failed to add task');
@@ -73,7 +73,7 @@ export const TaskProvider= ({ children }:{children:React.ReactNode}) => {
   
   const updateTask = async (updatedTask: Task) => {
     try {
-      await axios.put(`${api_uri}/api/task/${updatedTask._id}`, updatedTask,{withCredentials:true});
+      await axios.put(`https://task-manager-t77j.onrender.com/api/task/${updatedTask._id}`, updatedTask,{withCredentials:true});
       setTasks(prevTasks => prevTasks.map(task => (task._id === updatedTask._id ? updatedTask : task)));
     } catch (err) {
       setError('Failed to update task');
@@ -83,8 +83,8 @@ export const TaskProvider= ({ children }:{children:React.ReactNode}) => {
 
   const deleteTask = async (id: string) => {
     try {
-        console.log("object")
-      await axios.delete(`${api_uri}/api/task/${id}`,{withCredentials:true});
+        
+      await axios.delete(`https://task-manager-t77j.onrender.com/api/task/${id}`,{withCredentials:true});
       setTasks(prevTasks => prevTasks.filter(task => task._id !== id));
     } catch (err) {
       setError('Failed to delete task');
