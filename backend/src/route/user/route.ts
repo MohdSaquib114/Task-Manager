@@ -38,7 +38,7 @@ route.post("/sign-up", validate(signupSchema) ,async (req: Request, res: Respons
       res.cookie('token', token, {
      
         maxAge: 3600000, 
-       
+        sameSite:"none",
         path: '/',
       });
   
@@ -72,7 +72,7 @@ route.post("/sign-in", validate(signInSchema), async (req: Request, res: Respons
       res.cookie('token', token, {
      
         maxAge: 3600000, 
-   
+        sameSite:"none",
         path: '/',
       });
      
