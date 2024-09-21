@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation'
 
 
 
+const api_uri = "https://task-manager-t77j.onrender.com"
 
 export default function Navbar() {
     const [isMenuOpen,setIsMenuOpen] = useState(false)
@@ -18,7 +19,7 @@ export default function Navbar() {
  useEffect(()=>{
    async function fecthUser(){
     try {
-        const {data} = await axios.get('http://localhost:9000/api/cookie/check-auth',{withCredentials:true});
+        const {data} = await axios.get(`${api_uri}/api/cookie/check-auth`,{withCredentials:true});
         if(data.cookie){
             
             setUser(data.user)
@@ -33,7 +34,7 @@ export default function Navbar() {
 
  const handleLogout = async () => {
     try {
-        const res = await axios.post("http://localhost:9000/api/user/logout",{withCredentials:true})
+        const res = await axios.post(`${api_uri}/api/user/logout`,{withCredentials:true})
     
         setUser(null)
         router.push("/sign-in")

@@ -9,7 +9,7 @@ export default function useRedirect() {
     useEffect(() => {
         const checkAuth = async () => {
           try {
-            const {data} = await axios.get('http://localhost:9000/api/cookie/check-auth',{withCredentials:true});
+            const {data} = await axios.get('https://task-manager-t77j.onrender.com/api/cookie/check-auth',{withCredentials:true});
             
             if(data.cookie){
              

@@ -8,6 +8,8 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import axios from "axios"
 import { useRouter } from 'next/navigation'
 
+const api_uri = "https://task-manager-t77j.onrender.com"
+
 export default function SignupForm() {
   const [name, setName] = useState('')
   const [username, setUsername] = useState('')
@@ -32,7 +34,7 @@ export default function SignupForm() {
         return
       }
   
-      const {data} = await axios.post('http://localhost:9000/api/user/sign-up',{name,username,password},{withCredentials:true})
+      const {data} = await axios.post(`${api_uri}/api/user/sign-up`,{name,username,password},{withCredentials:true})
       setSuccess(true)
     
       if(data.success){
