@@ -40,6 +40,7 @@ route.post("/sign-up", validate(signupSchema) ,async (req: Request, res: Respons
         maxAge: 3600000, 
         sameSite:"none",
         path: '/',
+        secure:true
       });
   
   
@@ -73,6 +74,7 @@ route.post("/sign-in", validate(signInSchema), async (req: Request, res: Respons
      
         maxAge: 3600000, 
         sameSite:"none",
+        secure:true,
         path: '/',
       });
      
