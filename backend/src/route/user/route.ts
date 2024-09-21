@@ -37,7 +37,7 @@ route.post("/sign-up", validate(signupSchema) ,async (req: Request, res: Respons
       const token = jwt.sign({ id: newUser._id, username,name: newUser.name }, JWT_SECRET, { expiresIn: '1h' });
       res.cookie('token', token, {
         httpOnly: true,
-        sameSite:'lax',
+        sameSite:'none',
         maxAge: 3600000, 
         secure:true,
         path: '/',
@@ -72,7 +72,7 @@ route.post("/sign-in", validate(signInSchema), async (req: Request, res: Respons
    
       res.cookie('token', token, {
         httpOnly: true,
-        sameSite:'lax',
+        sameSite:'none',
         maxAge: 3600000, 
         secure:true,
         path: '/',
