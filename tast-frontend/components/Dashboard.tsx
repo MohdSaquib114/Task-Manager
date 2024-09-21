@@ -1,12 +1,12 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import TaskCard  from './TaskCard'
 import { FilterComponent } from './FilterComponent'
-import { useRouter } from 'next/navigation'
-import axios from "axios"
+
 import { useTaskContext } from './TaskProvider'
 import Link from 'next/link'
 import Navbar from './Navbar'
+import useRedirect from '@/app/hooks/useRedirect'
 
   
 export interface Task {
@@ -21,31 +21,11 @@ export interface Task {
 
 
 export default function Dashboard() {
-
+  useRedirect()
   const [filters, setFilters] = useState({ status: 'all', priority: 'all' })
   const { tasks,   deleteTask,  } = useTaskContext();
 
-  const router = useRouter();
-useEffect(() => {
-  const checkAuth = async () => {
-    try {
-      const {data} = await axios.get('http://localhost:9000/api/cookie/check-auth',{withCredentials:true});
-      
-      if(data.cookie){
-       
-       router.push("/")
-      }
-      else{
-          
-        router.push("/sign-in");
-      }
-    } catch (error) {
-      router.push("/sign-in");
-   
-    }
-  };
-  checkAuth();
-}, [ ]);
+
 
   const handleFilterChange = (type: 'status' | 'priority', value: string) => {
     setFilters(prev => ({ ...prev, [type]: value }))

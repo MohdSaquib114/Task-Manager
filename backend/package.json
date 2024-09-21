@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build":"npm install",
-    "start":"npx tsc && node dist/server.js",
-    "dev":"nodemon ./src/server.ts"
+    "build": "npm install",
+    "start": "npx tsc && node dist/server.js",
+    "dev": "cd ./src && nodemon ./server.ts"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +24,7 @@
     "express": "^4.21.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.6.3",
+    "typescript": "^5.6.2",
     "zod": "^3.23.8"
   },
   "devDependencies": {

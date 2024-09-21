@@ -40,11 +40,11 @@ export default function SignInForm() {
    
     } catch (error ) {
       //@ts-ignore
-      if(error.response.data?.message ){
+      if(error.response?.data?.message ){
         //@ts-ignore
-        setError(error.response.data?.message)
+        setError(error.response?.data?.message)
       }
-
+console.log(error)
       setError("Something went wrong")
     } finally {
   

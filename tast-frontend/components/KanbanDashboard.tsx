@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { HomeIcon } from 'lucide-react'
 import Link from 'next/link'
+import useRedirect from '@/app/hooks/useRedirect'
 
 interface Task {
     _id: string
@@ -18,8 +19,10 @@ interface Task {
 }
 
 export default function KanbanDashboard() {
+
   const { tasks, updateTask } = useTaskContext();
-console.log(tasks)
+ useRedirect()
+
   const onDragEnd = (result: DropResult) => {
     const { destination, source, draggableId } = result
 
@@ -38,13 +41,7 @@ console.log(tasks)
      //@ts-expect-error
      taskToUpdate.status =  destination.droppableId as Task['status'] 
 
-    // const updatedTasks = tasks.filter(task => 
-    //     {
-    //   if (task._id == draggableId) {
-    //     return { ...task, status: destination.droppableId as Task['status'] }
-    //   
-    //   return task
-    // })
+   
     //@ts-expect-error
     updateTask(taskToUpdate)
   }

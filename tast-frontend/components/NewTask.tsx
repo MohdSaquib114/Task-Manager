@@ -12,16 +12,18 @@ import { format } from "date-fns"
 import { cn } from "@/lib/utils"
 import { Calendar } from "@/components/ui/calendar"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import axios from "axios"
+
 import { useRouter } from "next/navigation"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import Link from "next/link"
 import { useTaskContext } from "./TaskProvider"
-import { Task } from "./Dashboard"
+import useRedirect from "@/app/hooks/useRedirect"
+
 
 
 
 export default function TaskForm() {
+  useRedirect()
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
   const [status, setStatus] = useState("To Do")
@@ -32,6 +34,7 @@ export default function TaskForm() {
   const [error, setError] = useState('')
   const [success, setSuccess] = useState(false)
   const {  addTask  } = useTaskContext();
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     try {

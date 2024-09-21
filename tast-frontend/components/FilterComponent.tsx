@@ -1,6 +1,7 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Label } from "@/components/ui/label"
 
+
 interface FilterComponentProps {
   onFilterChange: (type: 'status' | 'priority', value: string) => void
 }
@@ -36,6 +37,7 @@ export function FilterComponent({ onFilterChange }: FilterComponentProps) {
           </SelectContent>
         </Select>
       </div>
+    
     </div>
   )
 }

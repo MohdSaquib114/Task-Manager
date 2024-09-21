@@ -73,7 +73,7 @@ export default function TaskCard({ _id, title, description, status, priority, du
             <p className="text-sm text-gray-300">
               {showFullDescription ? description : truncatedDescription}
             </p>
-            {description.length > 20 && (
+            {description.length > 30 && (
               <Button
                 variant="link"
                 className="p-0 h-auto font-normal text-blue-400 hover:text-blue-300"
@@ -103,13 +103,7 @@ export default function TaskCard({ _id, title, description, status, priority, du
         </div>
       </CardContent>
       <CardFooter>
-        {/* <Button 
-          variant="destructive" 
-          className="w-full bg-red-700 hover:bg-red-600 text-white"
-          }
-        >
-          Delete
-        </Button> */}
+     
                     <AlertDialog  >
             <AlertDialogTrigger>
                 <Button 

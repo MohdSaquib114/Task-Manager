@@ -34,11 +34,14 @@ interface TaskContextType {
 
 const TaskContext = createContext<TaskContextType | undefined>(undefined);
 
-// Create a provider component
+
+
 export const TaskProvider= ({ children }:{children:React.ReactNode}) => {
+
   const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+
 
  
   useEffect(() => {
