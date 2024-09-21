@@ -12,7 +12,7 @@ const route = Router()
 
   route.get("/check-auth",authenticate,async (req:Request,res:Response)=> {
     const user = req.user
-
+console.log(user)
     if (!user) {
       return res.status(200).json({ cookie:false});
     }
